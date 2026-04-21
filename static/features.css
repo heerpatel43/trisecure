@@ -1,0 +1,144 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* Navbar */
+.nav {
+  border-bottom: 1px solid #bfbfbf;
+  background: #fff;
+}
+
+.nav__inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: #1f6feb;
+}
+
+.shield {
+  width: 18px;
+  height: 18px;
+  background: #1f6feb;
+  border-radius: 6px 6px 10px 10px;
+  clip-path: polygon(50% 0%, 100% 18%, 100% 60%, 50% 100%, 0% 60%, 0% 18%);
+}
+
+.menu {
+  display: flex;
+  gap: 40px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+}
+
+.menu a.active {
+  font-weight: 700;
+}
+
+.login-btn {
+  background: #1f6feb;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Features Section */
+.features {
+  padding: 80px 20px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 30%,
+      #ffffff 0%,
+      #eaf3ff 35%,
+      #86b9ee 100%);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 50px;
+}
+
+.title span {
+  color: #1f6feb;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  text-align: left;
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.orange { color: #f97316; }
+.purple { color: #7c3aed; }
+.yellow { color: #facc15; }
+.red { color: #ef4444; }
+.blue { color: #2563eb; }
+.gold { color: #f59e0b; }
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.line {
+  height: 2px;
+  background: #ccc;
+  margin: 10px 0 15px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu {
+    display: none;
+  }
+}

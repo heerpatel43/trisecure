@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriSecure • Features</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='features.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+<header class="nav">
+  <div class="nav__inner">
+
+    <div class="brand">
+      <span class="brand__icon">🛡️</span>
+      <span class="brand__name">TriSecure</span>
+    </div>
+
+    <nav class="menu">
+      <a href="{{ url_for('home') }}">Home</a>
+     <a href="{{ url_for('how_it_works') }}">How it works</a>
+     <a href="{{ url_for('features') }}">Features</a>
+     <a href="{{ url_for('scan_result') }}">Scan Result</a>
+    </nav>
+
+    <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+
+  </div>
+</header>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+
+      <h1 class="title">
+        Powerful <span>Security</span> Features
+      </h1>
+
+      <div class="grid">
+
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="icon orange">🗄️</div>
+          <h3>SQL Injection<br/>Detection</h3>
+          <div class="line"></div>
+          <p>Detects and alerts on SQL injection vulnerabilities.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="icon purple">&lt;/&gt;</div>
+          <h3>XSS Detection</h3>
+          <div class="line"></div>
+          <p>Finds cross-site scripting (XSS) flaws in your web applications.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="icon yellow">📁</div>
+          <h3>Directory Traversal<br/>Detection</h3>
+          <div class="line"></div>
+          <p>Identifies directory traversal vulnerabilities.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+          <div class="icon red">⚠️</div>
+          <h3>Severity<br/>Classification</h3>
+          <div class="line"></div>
+          <p>Risk levels categorizes: High, Medium, Low.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card">
+          <div class="icon blue">⬇️</div>
+          <h3>Downloadable<br/>Reports</h3>
+          <div class="line"></div>
+          <p>Export detailed reports in PDF format.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card">
+          <div class="icon gold">⚡</div>
+          <h3>Fast Scan<br/>Engine</h3>
+          <div class="line"></div>
+          <p>Lightning-fast scanning for quick results.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

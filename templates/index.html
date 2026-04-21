@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriSecure • Web Vulnerability Scanner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="nav">
+  <div class="nav__inner">
+
+    <div class="brand">
+      <span class="brand__icon">🛡️</span>
+      <span class="brand__name">TriSecure</span>
+    </div>
+
+    <nav class="menu">
+     <a href="{{ url_for('home') }}">Home</a>
+     <a href="{{ url_for('how_it_works') }}">How it works</a>
+     <a href="{{ url_for('features') }}">Features</a>
+     <a href="{{ url_for('scan_result') }}">Scan Result</a>
+    </nav>
+
+    <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+
+  </div>
+</header>
+
+  <!-- Hero -->
+  <main class="hero">
+    <section class="hero__inner">
+      <h1 class="hero__title">
+        Web <span class="blue">Vulnerability Scanner</span><br />
+        for Web Apps
+      </h1>
+
+      <p class="hero__sub">
+        Scan a website URL and get a vulnerability report with risk levels and fixes in seconds.
+      </p>
+
+      <form action="/scan" method="POST" class="search">
+  <input type="text" name="url" placeholder="Enter website URL (e.g. example.com)" required />
+  <button type="submit">Scan</button>
+</form>
+
+      <div class="meta">
+        <div class="meta__item">
+          <span class="tick"></span>
+          <span>Fast Scan</span>
+        </div>
+        <div class="meta__item">
+          <span class="tick"></span>
+          <span>Risk levels (Low/Medium/High)</span>
+        </div>
+        <div class="meta__item">
+          <span class="tick"></span>
+          <span>Downloadable report</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
