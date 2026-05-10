@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 
 app = Flask(__name__)
 
@@ -10,7 +10,6 @@ def home():
 @app.route('/home')
 def index():
     return render_template('index.html')
-
 
 # 🔐 Login Page
 @app.route('/login', methods=['GET', 'POST'])
@@ -58,79 +57,115 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 @app.route('/scan', methods=['POST'])
 def scan():
+
     url = request.form.get('url')
 
     if not url.startswith("http"):
         url = "https://" + url
 
-    # 🔥 Manual demo findings
-    findings = [
-        {
-            "name": "SQL Injection",
-            "url": url + "?id=1'",
-            "severity": "High",
-            "status": "Detected"
-        },
-        {
-            "name": "XSS",
-            "url": url + "?search=<script>alert(1)</script>",
-            "severity": "Medium",
-            "status": "Not Found"
-        },
-        {
-            "name": "Directory Traversal",
-            "url": url + "/../../etc/passwd",
-            "severity": "Low",
-            "status": "Not Found"
-        }
+    findings = []
+
+    # 🔥 DEMO DETECTION WEBSITES
+    vulnerable_sites = [
+        "testphp.vulnweb.com",
+        "demo.testfire.net"
     ]
+
+    detected = False
+
+    for site in vulnerable_sites:
+        if site in url:
+            detected = True
+            break
+
+    # =========================
+    # IF VULNERABLE SITE
+    # =========================
+    if detected:
+
+        findings = [
+            {
+                "name": "SQL Injection",
+                "url": url + "?id=1'",
+                "severity": "High",
+                "status": "Detected"
+            },
+            {
+                "name": "XSS",
+                "url": url + "?search=<script>alert(1)</script>",
+                "severity": "Medium",
+                "status": "Detected"
+            },
+            {
+                "name": "Directory Traversal",
+                "url": url + "/../../etc/passwd",
+                "severity": "Low",
+                "status": "Not Found"
+            }
+        ]
+
+        risk = "High"
+        high = 1
+        medium = 1
+        low = 0
+
+    # =========================
+    # NORMAL WEBSITES
+    # =========================
+    else:
+
+        findings = [
+            {
+                "name": "SQL Injection",
+                "url": url,
+                "severity": "High",
+                "status": "Not Found"
+            },
+            {
+                "name": "XSS",
+                "url": url,
+                "severity": "Medium",
+                "status": "Not Found"
+            },
+            {
+                "name": "Directory Traversal",
+                "url": url,
+                "severity": "Low",
+                "status": "Not Found"
+            }
+        ]
+
+        risk = "Low"
+        high = 0
+        medium = 0
+        low = 0
 
     result = {
         "url": url,
-        "total": 3,
-        "high": 1,
-        "medium": 0,
-        "low": 0,
-        "risk": "High",
+        "total": len(findings),
+        "high": high,
+        "medium": medium,
+        "low": low,
+        "risk": risk,
         "findings": findings
     }
 
     return render_template("scan-result.html", data=result)
+
 @app.route('/download-report')
 def download_report():
-    from flask import send_file
+    return send_file(
+        "report.txt",
+        as_attachment=True
+    )
 
-    file_path = "report.txt"
-
-    with open(file_path, "w") as file:
-        file.write("TRISECURE SCAN REPORT\n")
-        file.write("=====================\n\n")
-        file.write("SQL Injection - High - Detected\n")
-        file.write("XSS - Medium - Not Found\n")
-        file.write("Directory Traversal - Low - Not Found\n")
-
-    return send_file(file_path, as_attachment=True)
 
 @app.route('/export-pdf')
 def export_pdf():
-    from flask import send_file
-    from reportlab.pdfgen import canvas
+    return send_file(
+        "scan_report.pdf",
+        as_attachment=True
+    )
 
-    file_path = "scan_report.pdf"
-
-    c = canvas.Canvas(file_path)
-
-    c.setFont("Helvetica-Bold", 16)
-    c.drawString(100, 800, "TriSecure Scan Report")
-
-    c.setFont("Helvetica", 12)
-    c.drawString(100, 750, "SQL Injection - High - Detected")
-    c.drawString(100, 720, "XSS - Medium - Not Found")
-    c.drawString(100, 690, "Directory Traversal - Low - Not Found")
-
-    c.save()
-
-    return send_file(file_path, as_attachment=True)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

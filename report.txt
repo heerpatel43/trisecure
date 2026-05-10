@@ -1,0 +1,6 @@
+TRISECURE SCAN REPORT
+=====================
+
+SQL Injection - High - Detected
+XSS - Medium - Not Found
+Directory Traversal - Low - Not Found
