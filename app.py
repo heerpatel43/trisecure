@@ -7,9 +7,6 @@ app = Flask(__name__)
 def home():
     return redirect(url_for('login'))
 
-@app.route('/home')
-def index():
-    return render_template('index.html')
 
 # 🔐 Login Page
 @app.route('/login', methods=['GET', 'POST'])
