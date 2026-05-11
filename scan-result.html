@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TriSecure - Scan Result</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='scan-result.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="nav">
+  <div class="nav__inner">
+
+    <div class="brand">
+      <span class="brand__icon">🛡️</span>
+      <span class="brand__name">TriSecure</span>
+    </div>
+  
+    <nav class="menu">
+      <a href="{{ url_for('index') }}">Home</a>
+     <a href="{{ url_for('how_it_works') }}">How it works</a>
+     <a href="{{ url_for('features') }}">Features</a>
+     <a href="{{ url_for('scan_result') }}">Scan Result</a>
+    </nav>
+
+    <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+
+  </div>
+</header>
+
+<!-- Content -->
+<section class="container">
+
+    <div class="header-row">
+        <h2>Scan Result</h2>
+        
+        <div class="actions">
+    
+    <a href="/export-pdf" class="btn-outline">
+        Export PDF
+    </a>
+
+    <a href="/download-report" class="btn-primary">
+        Download Report
+    </a>
+
+</div>   
+    </div>
+
+    <p class="target">
+  Target: <a href="#">{{ data.url }}</a>
+   </p>
+
+    <!-- Summary Boxes -->
+    <div class="summary">
+
+  <div class="box">
+    <span>Total Issues</span>
+    <strong>{{ data.total }}</strong>
+  </div>
+
+  <div class="box">
+    <span>High</span>
+    <span class="badge high">{{ data.high }}</span>
+  </div>
+
+  <div class="box">
+    <span>Medium</span>
+    <span class="badge medium">{{ data.medium }}</span>
+  </div>
+
+  <div class="box">
+    <span>Low</span>
+    <span class="badge low">{{ data.low }}</span>
+  </div>
+
+  <div class="box">
+    <span>Overall Risk</span>
+    <span class="badge medium">{{ data.risk }}</span>
+  </div>
+
+</div>
+
+    <!-- Findings Table -->
+    <h3>Findings</h3>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Vulnerability</th>
+                    <th>Affected URL / Parameter</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                
+                </tr>
+            </thead>
+
+            <tbody>
+    {% for item in data.findings %}
+    <tr>
+        <td>{{ loop.index }}</td>
+
+        <td>{{ item.name }}</td>
+
+        <td>
+            <a href="{{ item.url }}" target="_blank">
+                {{ item.url }}
+            </a>
+        </td>
+
+        <td>
+            {% if item.severity == 'High' %}
+                <span class="badge high">High</span>
+            {% elif item.severity == 'Medium' %}
+                <span class="badge medium">Medium</span>
+            {% else %}
+                <span class="badge low">Low</span>
+            {% endif %}
+        </td>
+
+        <td>
+            {% if item.status == 'Detected' %}
+                <span class="badge green">Detected</span>
+            {% elif item.status == 'Error' %}
+                <span class="badge grey">Error</span>
+            {% else %}
+                <span class="badge grey">Not Found</span>
+            {% endif %}
+        </td>
+
+       
+    </tr>
+    {% endfor %}
+</tbody>
+    </div>
+
+</section>
+
+</body>
+</html>

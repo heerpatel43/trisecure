@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriSecure • Login</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="nav">
+  <div class="nav__inner">
+
+    <div class="brand">
+      <span class="brand__icon">🛡️</span>
+      <span class="brand__name">TriSecure</span>
+    </div>
+
+    <nav class="menu">
+      <a href="{{ url_for('index') }}">Home</a>
+     <a href="{{ url_for('how_it_works') }}">How it works</a>
+     <a href="{{ url_for('features') }}">Features</a>
+     <a href="{{ url_for('scan_result') }}">Scan Result</a>
+    </nav>
+
+   
+
+  </div>
+</header>
+
+  <!-- Page -->
+  <main class="page">
+    <section class="card">
+      <h1>Sign in</h1>
+      <p class="sub">Access scan history, reports and settings.</p>
+
+      <form action="/login" method="POST">
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+
+        <div class="row">
+          <label class="remember">
+            <input type="checkbox" />
+            <span>Remember me</span>
+          </label>
+
+          <a class="link" href="#">Forget password?</a>
+        </div>
+
+        <button class="btn" type="submit">Login</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

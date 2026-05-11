@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriSecure • How it works</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='how-it-works.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="nav">
+  <div class="nav__inner">
+
+    <div class="brand">
+      <span class="brand__icon">🛡️</span>
+      <span class="brand__name">TriSecure</span>
+    </div>
+
+    <nav class="menu">
+      <a href="{{ url_for('index') }}">Home</a>
+     <a href="{{ url_for('how_it_works') }}">How it works</a>
+     <a href="{{ url_for('features') }}">Features</a>
+     <a href="{{ url_for('scan_result') }}">Scan Result</a>
+    </nav>
+
+   <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+
+  </div>
+</header>
+  <!-- Section -->
+  <section class="how">
+    <div class="container">
+
+      <p class="small-title">How it works</p>
+
+      <h1>
+        Secure your web apps in<br />
+        three simple steps
+      </h1>
+
+      <p class="subtitle">
+        Fast, safe, non-intrusive checks with actionable results. Built for tech teams.
+      </p>
+
+      <!-- Steps -->
+      <div class="steps">
+
+        <!-- Horizontal line -->
+        <div class="line"></div>
+
+        <div class="step">
+          <div class="circle">1</div>
+          <h3>Enter URL</h3>
+          <p>Provide your website URL<br />and start the scan instantly.</p>
+        </div>
+
+        <div class="step">
+          <div class="circle">2</div>
+          <h3>Scan Runs</h3>
+          <p>TriSecure performs automated checks for<br />
+            SQL Injection, XSS, and Directory Traversal.</p>
+        </div>
+
+        <div class="step">
+          <div class="circle">3</div>
+          <h3>Get Report</h3>
+          <p>Receive a detailed vulnerability report<br />
+            with severity levels and recommendations.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
